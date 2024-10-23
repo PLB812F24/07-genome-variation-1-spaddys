@@ -7,6 +7,7 @@ date: "2024-10-01"
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 library(ggplot2)
+library(geom_star)
 
 ```
 
@@ -103,25 +104,36 @@ Now that you've worked through the tutorial, here are some homework questions.
 1A) Make a histogram of body mass (body_mass_g). Choose the colors and labels that you like best
 
 ```{r}
-
+ggplot(penguins, aes(x=body_mass_g)) + #information about the dataset
+geom_histogram(binwidth=40, color = "red", fill="pink") + #make the figure
+  labs(x = "Body Mass (g)", y = "Frequency") + #add labels
+theme_minimal() #the type of plot we want to make
 ```
 
 1B) Make density plot that compares body mass across different species.
 
 ```{r}
-
+ggplot(penguins, aes(x = body_mass_g, fill = species)) +
+  geom_density(alpha = .25)  +
+  labs(x = "Body Mass (g)", y = "Frequency")
 ```
 
 2A) Create a scatterplot of bill depth (x) and flipper length (y) colored by species.
 
 ```{r}
-
+ggplot(penguins, aes(x = bill_depth_mm, y = flipper_length_mm, color = species)) +
+  geom_point(shape=8) +
+  labs(x = "Bill Depth (mm)", y = "Flipper Length (mm)") +
+  theme_minimal()
 ```
 
 2B) What happens when you color the data points by body mass (body_mass_g) instead of species?
 
 ```{r}
-
+ggplot(penguins, aes(x = bill_depth_mm, y = flipper_length_mm, color = body_mass_g)) +
+  geom_point(shape=36, size=5) +
+  labs(x = "Bill Depth (mm)", y = "Flipper Length (mm)") +
+  theme_minimal()
 
 ```
 
